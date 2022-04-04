@@ -1,1 +1,5 @@
 console.log('The notes app is running')
+const NotesModel = require('./notesModel')
+const notesModel = new NotesModel()
+notesModel.addNote('testing')
+console.log(notesModel.getNotes())
