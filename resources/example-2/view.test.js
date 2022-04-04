@@ -1,4 +1,4 @@
-/**
+ /**
  * @jest-environment jsdom
  */
 
@@ -13,4 +13,12 @@ describe('Page view', () => {
 
     expect(document.querySelectorAll('p').length).toBe(2);
   });
+
+  it('add paragraph should add a third paragraph', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    const view = new View();
+    view.addParagraph()
+    expect(document.querySelectorAll('p').length).toBe(3);
+  })
+
 });
