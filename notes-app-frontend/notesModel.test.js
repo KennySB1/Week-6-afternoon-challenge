@@ -20,4 +20,8 @@ describe('notes tests', () => {
         notesModel.reset()
         expect(notesModel.getNotes()).toEqual([])
     })
+
+    it('set the notes to the result of the api', () => {
+        
+    })
 })
