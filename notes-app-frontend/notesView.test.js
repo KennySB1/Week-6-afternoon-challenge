@@ -34,13 +34,21 @@ describe("notesView", () => {
   });
 
   it('adds a note to the model with text', () => {
-
     const inputField = document.querySelector('#message-input')
     inputField.value = 'hey'
     const addButton = document.querySelector('#add-button')
     addButton.click()
     expect(document.querySelector('.note').innerText).toBe("hey")
+  });
+
+  it('clears input field when add note button is clicked', () => {
+    const inputField = document.querySelector('#message-input')
+    inputField.value = 'hey'
+    const addButton = document.querySelector('#add-button')
+    addButton.click()
+    expect(document.querySelector('#message-input').value).toBe("")
   })
+
   
 })
 
