@@ -1,10 +1,11 @@
 const NotesModel = require('./notesModel')
+
 let notesModel;
+
 beforeEach(() => {
     notesModel = new NotesModel();
 });
 describe('notes tests', () => {
-
 
     it('returns an empty array', () => {
         // const notesModel = new NotesModel()
