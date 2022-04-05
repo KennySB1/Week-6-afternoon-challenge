@@ -56,6 +56,8 @@
   console.log("The notes app is running");
   var NotesModel = require_notesModel();
   var notesModel = new NotesModel();
+  notesModel.addNote("testing");
+  console.log(notesModel.getNotes());
   var NotesView = require_notesView();
   var notesView = new NotesView(notesModel);
   notesView.displayNotes();
