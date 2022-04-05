@@ -4,6 +4,36 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
+  // notesView.js
+  var require_notesView = __commonJS({
+    "notesView.js"(exports, module) {
+      var NotesView2 = class {
+        constructor(model) {
+          this.model = model;
+          this.mainContainerEl = document.querySelector("#main-container");
+          this.addButton = document.querySelector("#add-button");
+          this.addButton.addEventListener("click", () => {
+            this.displayNotes();
+          });
+        }
+        getModel() {
+          return this.model;
+        }
+        displayNotes() {
+          const inputField = document.querySelector("#message-input").value;
+          this.model.addNote(inputField);
+          const notes = this.model.getNotes();
+          const note = notes[notes.length - 1];
+          const div = document.createElement("div");
+          div.innerText = note;
+          div.classList.add("note");
+          document.querySelector("#main-container").append(div);
+        }
+      };
+      module.exports = NotesView2;
+    }
+  });
+
   // notesModel.js
   var require_notesModel = __commonJS({
     "notesModel.js"(exports, module) {
@@ -25,40 +55,12 @@
     }
   });
 
-  // notesView.js
-  var require_notesView = __commonJS({
-    "notesView.js"(exports, module) {
-      var NotesView2 = class {
-        constructor(model) {
-          this.model = model;
-          this.mainContainerEl = document.querySelector("#main-container");
-        }
-        getModel() {
-          return this.model;
-        }
-        displayNotes() {
-          const notes = this.model.getNotes();
-          notes.forEach((note) => {
-            const div = document.createElement("div");
-            const p = document.createElement("p");
-            p.innerText = note;
-            div.className = "note";
-            div.appendChild(p);
-            document.querySelector("#main-container").append(div);
-          });
-        }
-      };
-      module.exports = NotesView2;
-    }
-  });
-
   // index.js
   console.log("The notes app is running");
+  var NotesView = require_notesView();
   var NotesModel = require_notesModel();
   var notesModel = new NotesModel();
-  notesModel.addNote("testing");
   console.log(notesModel.getNotes());
-  var NotesView = require_notesView();
   var notesView = new NotesView(notesModel);
   notesView.displayNotes();
 })();

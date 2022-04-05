@@ -10,6 +10,7 @@ let notesView;
 let notesModel;
 
 beforeEach(() => {
+  document.body.innerHTML = fs.readFileSync('./index.html');
   notesModel = new NotesModel();
   notesView = new NotesView(notesModel);
 });
@@ -26,14 +27,20 @@ describe("notesView", () => {
   });
 
   it("displays the stored notes", () => {
-    document.body.innerHTML = fs.readFileSync('./index.html');
+    // document.body.innerHTML = fs.readFileSync('./index.html');
     notesModel.addNote("HELLO");
-    notesModel.addNote("BYE");
     notesView.displayNotes();
-    expect(document.querySelectorAll('div.note').length).toBe(2);
+    expect(document.querySelectorAll('div.note').length).toBe(1);
   });
 
+  it('adds a note to the model with text', () => {
 
+    const inputField = document.querySelector('#message-input')
+    inputField.value = 'hey'
+    const addButton = document.querySelector('#add-button')
+    addButton.click()
+    expect(document.querySelector('.note').innerText).toBe("hey")
+  })
   
 })
 
